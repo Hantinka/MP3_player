@@ -26,13 +26,7 @@ public class MainActivity extends AppCompatActivity {
         buttonPlayPause = (Button) findViewById(R.id.buttonPlayPause);
         buttonNext = (Button) findViewById(R.id.buttonNext);
 
-        View.OnClickListener oclButtonShuffle = new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                buttonShuffle.setBackgroundResource(R.drawable.player_shuffle_color);
-            }
-        };
-        buttonShuffle.setOnClickListener(oclButtonShuffle);
+
     }
 
     @Override
