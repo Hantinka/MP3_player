@@ -7,15 +7,15 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/rl1">
+        android:id="@+id/generalRalativeLayout">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="56dp"
-            android:layout_below="@+id/rl2"
+            android:layout_below="@+id/informationRelativeLayout"
             android:layout_alignParentStart="true"
             android:background="@color/colorPrimary"
-            android:id="@+id/rl3">
+            android:id="@+id/playlistRelativeLayout">
 
             <ToggleButton
                 style="?android:attr/buttonStyleSmall"
@@ -45,42 +45,42 @@
                 android:layout_width="wrap_content"
                 android:layout_height="56dp"
                 android:text="# 4 "
-                android:id="@+id/textView"
+                android:id="@+id/currentTrackNumberTextView"
                 android:gravity="center"
                 android:layout_alignTop="@+id/buttonShuffle"
-                android:layout_toStartOf="@+id/textView3" />
+                android:layout_toStartOf="@+id/separatorTextView" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="56dp"
                 android:text=" 4/31"
-                android:id="@+id/textView2"
+                android:id="@+id/currentTrackInPlaylistTextView"
                 android:gravity="center"
-                android:layout_alignTop="@+id/textView3"
+                android:layout_alignTop="@+id/separatorTextView"
                 android:layout_centerHorizontal="true" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="56dp"
                 android:text=" - "
-                android:id="@+id/textView3"
+                android:id="@+id/separatorTextView"
                 android:gravity="center"
-                android:layout_alignTop="@+id/textView"
-                android:layout_toStartOf="@+id/textView2" />
+                android:layout_alignTop="@+id/currentTrackNumberTextView"
+                android:layout_toStartOf="@+id/currentTrackInPlaylistTextView" />
         </RelativeLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="56dp"
             android:background="@color/colorPrimaryDark"
-            android:id="@+id/rl2">
+            android:id="@+id/informationRelativeLayout">
 
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="56dp"
                 android:inputType="textMultiLine"
                 android:ems="10"
-                android:id="@+id/editText"
+                android:id="@+id/currentTrackInformationEditText"
                 android:layout_centerVertical="true"
                 android:layout_alignParentStart="true"
                 android:text="Название трека, Исполнитель, Альбом" />
@@ -90,20 +90,20 @@
             android:layout_width="match_parent"
             android:layout_height="28dp"
             android:background="@color/colorPrimary"
-            android:id="@+id/rl5"
-            android:layout_above="@+id/relativeLayout"
+            android:id="@+id/chronometerRelativeLayout"
+            android:layout_above="@+id/playerManagementRelativeLayout"
             android:layout_alignParentStart="true">
 
             <Chronometer
                 android:layout_width="wrap_content"
                 android:layout_height="28dp"
-                android:id="@+id/chronometer"
+                android:id="@+id/startTrackChronometer"
                 android:layout_alignParentStart="true" />
 
             <Chronometer
                 android:layout_width="wrap_content"
                 android:layout_height="28dp"
-                android:id="@+id/chronometer2"
+                android:id="@+id/endTrackChronometer"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentEnd="true" />
         </RelativeLayout>
@@ -111,21 +111,21 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="28dp"
-            android:layout_above="@+id/rl5"
+            android:layout_above="@+id/chronometerRelativeLayout"
             android:layout_alignParentEnd="true"
             android:background="@color/colorPrimary"
-            android:id="@+id/rl4">
+            android:id="@+id/seekbarRelativeLayout">
 
         </RelativeLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/rl3"
+            android:layout_below="@+id/playlistRelativeLayout"
             android:layout_alignParentStart="true"
-            android:layout_above="@+id/rl4"
+            android:layout_above="@+id/seekbarRelativeLayout"
             android:layout_alignParentEnd="true"
-            android:id="@+id/rl6"
+            android:id="@+id/centerImageRelativeLayout"
             android:background="@drawable/background"></RelativeLayout>
 
         <RelativeLayout
@@ -133,7 +133,7 @@
             android:layout_height="56dp"
             android:layout_alignParentBottom="true"
             android:layout_alignParentStart="true"
-            android:id="@+id/relativeLayout">
+            android:id="@+id/playerManagementRelativeLayout">
 
             <Button
                 android:layout_width="26dp"
@@ -170,13 +170,14 @@
         <SeekBar
             android:layout_width="wrap_content"
             android:layout_height="28dp"
-            android:id="@+id/seekBar"
+            android:id="@+id/scrollingCurrentTrackSeekBar"
             android:background="@color/colorPrimary"
-            android:layout_alignBottom="@+id/rl5"
+            android:layout_alignBottom="@+id/chronometerRelativeLayout"
             android:layout_alignParentStart="true"
             android:layout_marginBottom="25dp"
             android:layout_alignParentEnd="true"
-            android:clickable="true" />
+            android:clickable="true"
+            android:indeterminate="false" />
 
     </RelativeLayout>
 </LinearLayout>
