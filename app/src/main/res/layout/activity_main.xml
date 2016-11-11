@@ -135,38 +135,36 @@
             android:layout_alignParentStart="true"
             android:id="@+id/playerManagementRelativeLayout">
 
-            <Button
+            <ImageButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/buttonPrevios"
                 android:clickable="true"
-                android:background="@drawable/button_start_background"
+                android:src="@drawable/button_start_background"
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
                 android:width="1dp" />
 
-            <Button
+            <ImageButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/buttonNext"
                 android:clickable="true"
-                android:background="@drawable/button_end_background"
+                android:src="@drawable/button_end_background"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:width="1dp" />
 
-            <ToggleButton
+            <ImageButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/buttonPlayPause"
                 android:clickable="true"
-                android:textOn=""
-                android:textOff=""
-                android:background="@drawable/button_play_pause_background"
+                android:src="@drawable/player_play_normal"
                 android:layout_alignTop="@+id/buttonPrevios"
                 android:layout_centerHorizontal="true"
-                android:checked="false"
-                android:width="1dp" />
+                android:width="1dp"
+                android:onClick="onClick" />
         </RelativeLayout>
 
         <SeekBar

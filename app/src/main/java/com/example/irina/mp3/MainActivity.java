@@ -6,13 +6,17 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 public class MainActivity extends AppCompatActivity {
-    Button buttonShuffle;
-    Button buttonRound;
-    Button buttonPrevios;
-    Button buttonPlayPause;
-    Button buttonNext;
+    //Button buttonShuffle;
+    //Button buttonRound;
+    //Button buttonPrevios;
+    //Button buttonPlayPause;
+    //Button buttonNext;
+    private ImageButton buttonPlayPause;
+    private boolean play = true;
+
 
 
     @Override
@@ -20,13 +24,25 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        buttonShuffle = (Button) findViewById(R.id.buttonShuffle);
-        buttonRound = (Button) findViewById(R.id.buttonRound);
-        buttonPrevios = (Button) findViewById(R.id.buttonPrevios);
-        buttonPlayPause = (Button) findViewById(R.id.buttonPlayPause);
-        buttonNext = (Button) findViewById(R.id.buttonNext);
+        //buttonShuffle = (Button) findViewById(R.id.buttonShuffle);
+        //buttonRound = (Button) findViewById(R.id.buttonRound);
+        //buttonPrevios = (Button) findViewById(R.id.buttonPrevios);
+       // buttonPlayPause = (Button) findViewById(R.id.buttonPlayPause);
+        //buttonNext = (Button) findViewById(R.id.buttonNext);
+        //ImageButton buttonPlayPause = (ImageButton) findViewById(R.id.buttonPlayPause);
+        buttonPlayPause = (ImageButton) findViewById(R.id.buttonPlayPause);
+        buttonPlayPause.setImageResource(R.drawable.player_play_normal);
 
+    }
 
+    public void onClick(View v){
+        if (play){
+            buttonPlayPause.setImageResource(R.drawable.player_pause_normal);
+        }
+        else {
+            buttonPlayPause.setImageResource(R.drawable.player_play_normal);
+        }
+        play = !play;
     }
 
     @Override
