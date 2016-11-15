@@ -2,5 +2,5 @@
 <resources>
     <color name="colorPrimary">#e6e6e6</color>
     <color name="colorPrimaryDark">#5e5e5e</color>
-    <color name="colorAccent">#ff8800</color>
+    <color name="apptheme_color">#ff8800</color>
 </resources>

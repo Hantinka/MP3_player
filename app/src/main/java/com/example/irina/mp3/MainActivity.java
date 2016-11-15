@@ -9,11 +9,6 @@ import android.widget.Button;
 import android.widget.ImageButton;
 
 public class MainActivity extends AppCompatActivity {
-    //Button buttonShuffle;
-    //Button buttonRound;
-    //Button buttonPrevios;
-    //Button buttonPlayPause;
-    //Button buttonNext;
     private ImageButton buttonPlayPause;
     private boolean play = true;
 
@@ -23,13 +18,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        //buttonShuffle = (Button) findViewById(R.id.buttonShuffle);
-        //buttonRound = (Button) findViewById(R.id.buttonRound);
-        //buttonPrevios = (Button) findViewById(R.id.buttonPrevios);
-       // buttonPlayPause = (Button) findViewById(R.id.buttonPlayPause);
-        //buttonNext = (Button) findViewById(R.id.buttonNext);
-        //ImageButton buttonPlayPause = (ImageButton) findViewById(R.id.buttonPlayPause);
         buttonPlayPause = (ImageButton) findViewById(R.id.buttonPlayPause);
         buttonPlayPause.setImageResource(R.drawable.player_play_normal);
         buttonPlayPause.setOnClickListener(onClickButtonPlayPause);
