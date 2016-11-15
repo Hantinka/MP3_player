@@ -32,9 +32,10 @@ public class MainActivity extends AppCompatActivity {
         //ImageButton buttonPlayPause = (ImageButton) findViewById(R.id.buttonPlayPause);
         buttonPlayPause = (ImageButton) findViewById(R.id.buttonPlayPause);
         buttonPlayPause.setImageResource(R.drawable.player_play_normal);
-
+        buttonPlayPause.setOnClickListener(onClickButtonPlayPause);
     }
-
+    View.OnClickListener onClickButtonPlayPause = new View.OnClickListener(){
+    @Override
     public void onClick(View v){
         if (play){
             buttonPlayPause.setImageResource(R.drawable.player_pause_normal);
@@ -44,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
         }
         play = !play;
     }
-
+    };
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.

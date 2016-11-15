@@ -163,8 +163,7 @@
                 android:src="@drawable/player_play_normal"
                 android:layout_alignTop="@+id/buttonPrevios"
                 android:layout_centerHorizontal="true"
-                android:width="1dp"
-                android:onClick="onClick" />
+                android:width="1dp" />
         </RelativeLayout>
 
         <SeekBar
