@@ -10,34 +10,16 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
-    private ImageButton buttonPlayPause;
-    private boolean play = true;
-    private static final String TAG = "myLogs";
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Log.d(TAG, "Найдем View-элементы");
-        buttonPlayPause = (ImageButton) findViewById(R.id.buttonPlayPause);
-        buttonPlayPause.setImageResource(R.drawable.player_play_normal);
-        Log.d(TAG, "Присваиваем обработчик кнопкам");
-        buttonPlayPause.setOnClickListener(onClickButtonPlayPause);
     }
 
 
-    View.OnClickListener onClickButtonPlayPause = new View.OnClickListener(){
-        @Override
-        public void onClick(View v) {
-            if (play) {
-                buttonPlayPause.setImageResource(R.drawable.player_pause_normal);
-            } else {
-                buttonPlayPause.setImageResource(R.drawable.player_play_normal);
-            }
-            play = !play;
-        }
-    };
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
