@@ -115,7 +115,6 @@
             android:layout_alignParentEnd="true"
             android:background="@color/colorPrimary"
             android:id="@+id/seekbarRelativeLayout">
-
         </RelativeLayout>
 
         <RelativeLayout
@@ -128,7 +127,7 @@
             android:id="@+id/centerImageRelativeLayout"
             android:background="@drawable/background"></RelativeLayout>
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="56dp"
             android:layout_alignParentBottom="true"
@@ -139,32 +138,23 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/buttonPrevios"
-                android:clickable="true"
                 android:src="@drawable/button_start_background"
-                android:layout_alignParentLeft="true"
-                android:layout_centerVertical="true"
-                android:width="1dp" />
-
-            <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/buttonNext"
-                android:clickable="true"
-                android:src="@drawable/button_end_background"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:width="1dp" />
+                android:layout_weight="1" />
 
             <ImageButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/buttonPlayPause"
-                android:clickable="true"
                 android:src="@drawable/player_play_normal"
-                android:layout_alignTop="@+id/buttonPrevios"
-                android:layout_centerHorizontal="true"
-                android:width="1dp" />
-        </RelativeLayout>
+                android:layout_weight="1" />
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/buttonNext"
+                android:src="@drawable/button_end_background"
+                android:layout_weight="1" />
+        </LinearLayout>
 
         <SeekBar
             android:layout_width="wrap_content"
@@ -178,6 +168,5 @@
             android:clickable="true"
             android:indeterminate="false"
             style="@style/SeekBarAppTheme" />
-
     </RelativeLayout>
 </LinearLayout>

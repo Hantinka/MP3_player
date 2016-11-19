@@ -24,40 +24,41 @@ public class MainActivity extends AppCompatActivity {
         buttonPlayPause.setImageResource(R.drawable.player_play_normal);
         Log.d(TAG, "Присваиваем обработчик кнопкам");
         buttonPlayPause.setOnClickListener(onClickButtonPlayPause);
-        Toast.makeText(this, "Текст всплывающего сообщения", Toast.LENGTH_LONG).show();
     }
 
 
     View.OnClickListener onClickButtonPlayPause = new View.OnClickListener(){
-    @Override
-    public void onClick(View v) {
-        if (play) {
-            buttonPlayPause.setImageResource(R.drawable.player_pause_normal);
-        } else {
-            buttonPlayPause.setImageResource(R.drawable.player_play_normal);
+        @Override
+        public void onClick(View v) {
+            if (play) {
+                buttonPlayPause.setImageResource(R.drawable.player_pause_normal);
+            } else {
+                buttonPlayPause.setImageResource(R.drawable.player_play_normal);
+            }
+            play = !play;
         }
-        play = !play;
-    }
     };
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        switch (id){
+            case R.id.action_settings:
+                Toast.makeText(this, "Пункт меню Settings", Toast.LENGTH_LONG).show();
+                return true;
+            case R.id.menu_open:
+                Toast.makeText(this, "Пункт меню Open", Toast.LENGTH_LONG).show();
+                return true;
+            case R.id.menu_exit:
+                this.finishAffinity();
+                return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 }
