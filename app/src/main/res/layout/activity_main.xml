@@ -79,12 +79,12 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="56dp"
-                android:id="@+id/currentTrackInformationEditText"
+                android:id="@+id/currentTrackInformationTextView"
                 android:layout_centerVertical="true"
                 android:layout_alignParentStart="true"
-                android:text="Название трека, Исполнитель, Альбом"
                 android:layout_alignParentBottom="false"
-                android:gravity="center" />
+                android:gravity="center"
+                android:onClick="setInfoText" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -92,7 +92,7 @@
             android:layout_height="20dp"
             android:background="@color/colorPrimary"
             android:id="@+id/chronometerRelativeLayout"
-            android:layout_above="@+id/playerManagementRelativeLayout"
+            android:layout_above="@+id/playerManagementLinerLayout"
             android:layout_alignParentStart="true"
             android:paddingLeft="9dp"
             android:paddingRight="15dp">
@@ -117,7 +117,7 @@
             android:layout_width="match_parent"
             android:layout_height="56dp"
             android:layout_alignParentBottom="true"
-            android:id="@+id/playerManagementRelativeLayout"
+            android:id="@+id/playerManagementLinerLayout"
             android:paddingTop="8dp">
 
             <ImageButton
@@ -136,7 +136,9 @@
                 android:layout_weight="1"
                 android:textOn=""
                 android:textOff=""
-                android:drawableBottom="@drawable/button_play_pause_background"/>
+                android:drawableBottom="@drawable/button_play_pause_background"
+                android:nestedScrollingEnabled="false"
+                android:onClick="setPlayPause" />
 
             <ImageButton
                 style="?android:attr/buttonStyleSmall"
@@ -152,8 +154,6 @@
             android:layout_height="36dp"
             android:id="@+id/scrollingCurrentTrackSeekBar"
             android:background="@color/colorPrimary"
-            android:clickable="true"
-            android:indeterminate="false"
             style="@style/SeekBarAppTheme"
             android:layout_above="@+id/chronometerRelativeLayout"
             android:layout_alignParentStart="true"

@@ -1,23 +1,60 @@
 package com.example.irina.mp3;
 
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageButton;
+import android.widget.Chronometer;
+import android.widget.SeekBar;
+import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ToggleButton;
+
 
 public class MainActivity extends AppCompatActivity {
 
+    private MediaPlayer mediaPlayer;
+    private ToggleButton playPause;
+    private SeekBar seekBar;
+    private TextView infoTextView;
+    private Chronometer chronometerStart;
+    private Chronometer chronometerEnd;
+    private boolean play = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        initViews();
+
     }
 
+    private void initViews (){
+        playPause = (ToggleButton) findViewById(R.id.buttonPlayPause);
+        mediaPlayer = MediaPlayer.create(this, R.raw.borderlands);
+
+
+        seekBar = (SeekBar) findViewById(R.id.scrollingCurrentTrackSeekBar);
+        seekBar.setMax(mediaPlayer.getDuration());
+        infoTextView = (TextView) findViewById(R.id.currentTrackInformationTextView);
+
+        chronometerStart = (Chronometer) findViewById(R.id.startTrackChronometer);
+        chronometerEnd = (Chronometer) findViewById(R.id.endTrackChronometer);
+
+
+    }
+
+    public void setPlayPause (View view){
+        if (play) {
+            mediaPlayer.start();
+        }
+        else {
+            mediaPlayer.pause();
+        }
+        play = !play;
+    }
 
 
 
