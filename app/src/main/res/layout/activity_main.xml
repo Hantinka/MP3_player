@@ -83,8 +83,7 @@
                 android:layout_centerVertical="true"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentBottom="false"
-                android:gravity="center"
-                android:onClick="setInfoText" />
+                android:gravity="center" />
         </RelativeLayout>
 
         <RelativeLayout

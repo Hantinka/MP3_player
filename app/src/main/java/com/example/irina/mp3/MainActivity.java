@@ -1,5 +1,6 @@
 package com.example.irina.mp3;
 
+import android.media.MediaMetadataRetriever;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -13,6 +14,7 @@ import android.widget.Toast;
 import android.widget.ToggleButton;
 
 
+
 public class MainActivity extends AppCompatActivity {
 
     private MediaPlayer mediaPlayer;
@@ -23,28 +25,38 @@ public class MainActivity extends AppCompatActivity {
     private Chronometer chronometerEnd;
     private boolean play = true;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initViews();
-
+        getTags();
     }
+
+
 
     private void initViews (){
         playPause = (ToggleButton) findViewById(R.id.buttonPlayPause);
         mediaPlayer = MediaPlayer.create(this, R.raw.borderlands);
-
-
         seekBar = (SeekBar) findViewById(R.id.scrollingCurrentTrackSeekBar);
-        seekBar.setMax(mediaPlayer.getDuration());
         infoTextView = (TextView) findViewById(R.id.currentTrackInformationTextView);
-
         chronometerStart = (Chronometer) findViewById(R.id.startTrackChronometer);
         chronometerEnd = (Chronometer) findViewById(R.id.endTrackChronometer);
 
-
     }
+
+    private void getTags (){
+        String filePath = "sdcard/download/borderlands.mp3";
+        MediaMetadataRetriever mediaMetadataRetriever = new MediaMetadataRetriever();
+        mediaMetadataRetriever.setDataSource(filePath);
+        String album = mediaMetadataRetriever.extractMetadata(1);
+        String trackName = mediaMetadataRetriever.extractMetadata(7);
+        String artist = mediaMetadataRetriever.extractMetadata(2);
+        infoTextView.setText(artist + " - " + trackName + " - " + album);
+    }
+
 
     public void setPlayPause (View view){
         if (play) {
