@@ -168,5 +168,22 @@
             android:background="@drawable/background"
             android:layout_below="@+id/playlistRelativeLayout"
             android:layout_above="@+id/scrollingCurrentTrackSeekBar" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/filePathEditText"
+            android:layout_alignTop="@+id/centerImageImageView"
+            android:layout_alignParentStart="true"
+            android:hint="The path to the mp3-file" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Set new mp3"
+            android:id="@+id/newPathButton"
+            android:layout_below="@+id/filePathEditText"
+            android:layout_alignParentStart="true" />
+
     </RelativeLayout>
 </LinearLayout>

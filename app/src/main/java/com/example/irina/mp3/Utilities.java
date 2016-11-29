@@ -16,6 +16,11 @@ public class Utilities {
 
         // Convert total duration into time
         int hours = (int)( milliseconds / (1000*60*60));
+        float firstPart = 61858 % 60000;
+        int a = 100;
+        int b = 9;
+        int c = a % b;
+        Utils.DBG("c = >> "+ c);
         int minutes = (int)(milliseconds % (1000*60*60)) / (1000*60);
         int seconds = (int) ((milliseconds % (1000*60*60)) % (1000*60) / 1000);
         // Add hours if there
@@ -67,5 +72,6 @@ public class Utilities {
         // return current duration in milliseconds
         return currentDuration * 1000;
     }
+
 }
 
