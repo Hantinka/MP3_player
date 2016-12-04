@@ -2,6 +2,8 @@ package com.example.irina.mp3;
 
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.media.MediaMetadataRetriever;
 import android.media.MediaPlayer;
 import android.net.Uri;
@@ -12,9 +14,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.Chronometer;
-import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -36,9 +37,7 @@ public class MainActivity extends AppCompatActivity implements SeekBar.OnSeekBar
     private Chronometer chronometerTotal;
     private boolean play = true;
     private Handler handler = new Handler(); // Handler to update UI timer, progress bar etc,.
-    private EditText filePathEditText;
-    private Button newPathButton;
-
+    private ImageView ivAlbumCover;
     private static final int SELECTED_SONG = 1;
     private String selectedSongPath;
 
@@ -48,43 +47,53 @@ public class MainActivity extends AppCompatActivity implements SeekBar.OnSeekBar
         Fabric.with(this, new Crashlytics());
         setContentView(R.layout.activity_main);
         initViews();
-        setMetadata();
     }
 
     private void initViews (){
-        newPathButton = (Button) findViewById(R.id.newPathButton);
-        newPathButton.setOnClickListener(oclNewPathButton);
         playPause = (ToggleButton) findViewById(R.id.buttonPlayPause);
-        filePathEditText = (EditText) findViewById(R.id.filePathEditText);
-        String filePathHardcode = "sdcard/download/borderlands.mp3";
-        filePathEditText.setText(filePathHardcode);
-        String filePath = filePathEditText.getText().toString();
-        mediaPlayer = MediaPlayer.create(this, Uri.parse(filePath));
         seekBar = (SeekBar) findViewById(R.id.scrollingCurrentTrackSeekBar);
         seekBar.setProgress(0);
         seekBar.setMax(100);
         infoTextView = (TextView) findViewById(R.id.currentTrackInformationTextView);
         chronometerCurrent = (Chronometer) findViewById(R.id.currentTrackChronometer);
         chronometerTotal = (Chronometer) findViewById(R.id.totalTrackChronometer);
-
-
         seekBar.setOnSeekBarChangeListener(this);
-        mediaPlayer.setOnCompletionListener(this);
+        ivAlbumCover = (ImageView) findViewById(R.id.centerImageImageView);
 
     }
 
-    private void setMetadata (){
+    private void setMetadata () {
         MediaMetadataRetriever mediaMetadataRetriever = new MediaMetadataRetriever();
-        String filePath = filePathEditText.getText().toString();
+        String filePath = selectedSongPath;
         mediaMetadataRetriever.setDataSource(filePath);
         String album = mediaMetadataRetriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ALBUM);
         String trackName = mediaMetadataRetriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_TITLE);
         String artist = mediaMetadataRetriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ARTIST);
         infoTextView.setText(artist + " - " + trackName + " - " + album);
+        setCover(mediaMetadataRetriever);
+    }
+
+    public boolean setCover (MediaMetadataRetriever mediaMetadataRetriever){
+        byte [] albumCover;
+        albumCover = mediaMetadataRetriever.getEmbeddedPicture();
+        if (albumCover != null){
+            Bitmap bitmap = BitmapFactory.decodeByteArray(albumCover, 0, albumCover.length);
+            ivAlbumCover.setImageBitmap(bitmap);
+            Utils.DBG("Cover");
+            return true;
+        }
+        else {
+            ivAlbumCover.setImageResource(R.drawable.background);
+            Utils.DBG("No Cover");
+            return false;
+        }
     }
 
     public void updateTrack (){
-        String filePath = filePathEditText.getText().toString();
+        String filePath = selectedSongPath;
+        mediaPlayer = MediaPlayer.create(this, Uri.parse(filePath));
+        mediaPlayer.setOnCompletionListener(this);
+
         try {
             mediaPlayer.reset();
             mediaPlayer.setDataSource(filePath);
@@ -109,9 +118,10 @@ public class MainActivity extends AppCompatActivity implements SeekBar.OnSeekBar
             if (requestCode == SELECTED_SONG){
                 Uri selectedSongUri = data.getData();
                 selectedSongPath = getNewSongPath(selectedSongUri);
-                filePathEditText.setText(selectedSongPath);
                 Utils.DBG(selectedSongPath);
                 updateTrack();
+                long totalDuration = mediaPlayer.getDuration();
+                chronometerTotal.setText("" + Utils.millisecondsIntoTimeFormat(totalDuration));
             }
         }
     }
@@ -125,14 +135,7 @@ public class MainActivity extends AppCompatActivity implements SeekBar.OnSeekBar
     }
 
 
-    View.OnClickListener oclNewPathButton = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            getNewSong();
-        }
-    };
-
-    public void setPlayPause (View view){
+   public void setPlayPause (View view){
         if (play) {
             mediaPlayer.start();
             updateSeekBar();
@@ -151,7 +154,6 @@ public class MainActivity extends AppCompatActivity implements SeekBar.OnSeekBar
         public void run() {
             long totalDuration = mediaPlayer.getDuration();
             long currentDuration = mediaPlayer.getCurrentPosition();
-            chronometerTotal.setText("" + Utils.millisecondsIntoTimeFormat(totalDuration));
             chronometerCurrent.setText("" + Utils.millisecondsIntoTimeFormat(currentDuration));
             int progress = Utils.getCalculatedPercentage(totalDuration,currentDuration);
             seekBar.setProgress(progress);
@@ -170,10 +172,11 @@ public class MainActivity extends AppCompatActivity implements SeekBar.OnSeekBar
         int id = item.getItemId();
         switch (id){
             case R.id.action_settings:
-                Toast.makeText(this, "Пункт меню Settings", Toast.LENGTH_LONG).show();
+                //Toast.makeText(this, "Пункт меню Settings", Toast.LENGTH_LONG).show();
                 return true;
             case R.id.menu_open:
-                Toast.makeText(this, "Пункт меню Open", Toast.LENGTH_LONG).show();
+                //Toast.makeText(this, "Пункт меню Open", Toast.LENGTH_LONG).show();
+                getNewSong();
                 return true;
             case R.id.menu_exit:
                 this.finishAffinity();
