@@ -137,7 +137,8 @@
                 android:textOff=""
                 android:drawableBottom="@drawable/button_play_pause_background"
                 android:nestedScrollingEnabled="false"
-                android:onClick="setPlayPause" />
+                android:onClick="setPlayPause"
+                android:checked="false" />
 
             <ImageButton
                 style="?android:attr/buttonStyleSmall"
@@ -167,6 +168,16 @@
             android:paddingRight="5dp"
             android:layout_below="@+id/playlistRelativeLayout"
             android:layout_above="@+id/scrollingCurrentTrackSeekBar" />
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Open dialog"
+            android:id="@+id/openDialogButton"
+            android:layout_alignTop="@+id/centerImageImageView"
+            android:layout_alignParentEnd="true"
+            android:onClick="onOpenFileClick" />
 
     </RelativeLayout>
 </LinearLayout>

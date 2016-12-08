@@ -14,6 +14,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.ImageView;
 import android.widget.SeekBar;
@@ -27,7 +28,7 @@ import java.io.IOException;
 
 
 
-public class MainActivity extends AppCompatActivity implements SeekBar.OnSeekBarChangeListener, MediaPlayer.OnCompletionListener {
+public class MainActivity extends AppCompatActivity implements SeekBar.OnSeekBarChangeListener, MediaPlayer.OnCompletionListener, View.OnClickListener {
 
     private MediaPlayer mediaPlayer;
     private ToggleButton playPause;
@@ -40,6 +41,7 @@ public class MainActivity extends AppCompatActivity implements SeekBar.OnSeekBar
     private ImageView ivAlbumCover;
     private static final int SELECTED_SONG = 1;
     private String selectedSongPath;
+    private Button openDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +62,7 @@ public class MainActivity extends AppCompatActivity implements SeekBar.OnSeekBar
         seekBar.setOnSeekBarChangeListener(this);
         ivAlbumCover = (ImageView) findViewById(R.id.centerImageImageView);
 
+        openDialog = (Button)findViewById(R.id.openDialogButton);
     }
 
     private void setMetadata () {
@@ -146,9 +149,9 @@ public class MainActivity extends AppCompatActivity implements SeekBar.OnSeekBar
         play = !play;
     }
 
-    public void updateSeekBar() {
-        handler.postDelayed(updateTimeTask, 100);
-    }
+   public void updateSeekBar() {
+       handler.postDelayed(updateTimeTask, 100);
+   }
 
     private Runnable updateTimeTask = new Runnable() {
         public void run() {
@@ -207,6 +210,16 @@ public class MainActivity extends AppCompatActivity implements SeekBar.OnSeekBar
 
     @Override
     public void onCompletion(MediaPlayer mp) {
+
+    }
+
+    public void onOpenFileClick (View view){
+        OpenFileDialog fileDialog = new OpenFileDialog(this);
+        fileDialog.show();
+    }
+
+    @Override
+    public void onClick(View v) {
 
     }
 }
