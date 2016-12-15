@@ -5,4 +5,5 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_open_file_dialog">OpenFileDialog</string>
+    <string name="title_activity_act_files_list">ActFilesList</string>
 </resources>
