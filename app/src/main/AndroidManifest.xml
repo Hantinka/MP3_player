@@ -34,6 +34,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.irina.mp3.ActMain" />
         </activity>
+        <activity
+            android:name=".ActTest"
+            android:label="@string/title_activity_act_test"
+            android:parentActivityName=".ActMain" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.irina.mp3.ActMain" />
+        </activity>
     </application>
 
 </manifest>

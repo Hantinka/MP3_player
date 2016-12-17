@@ -223,6 +223,11 @@ public class ActMain extends AppCompatActivity implements SeekBar.OnSeekBarChang
         startActivity(intent);
     }
 
+    public void onGoTestClick (View view){
+        Intent testIntent = new Intent(this, ActTest.class);
+        startActivity(testIntent);
+    }
+
     @Override
     public void onClick(View v) {
 

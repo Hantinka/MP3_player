@@ -1,59 +1,46 @@
 package com.example.irina.mp3;
 
 
-import android.content.Context;
-import android.os.Environment;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 
 import java.io.File;
+import java.util.ArrayList;
+
 
 public class ActFilesList extends AppCompatActivity {
 
+    ArrayList<Files> files = new ArrayList<Files>();
 
-    private ListView lvFilesList;
-    private ImageView ivIcon;
-
+    ListAdapter listAdapter;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.act_files_list);
-        lvFilesList = (ListView)findViewById(R.id.lvOpenFileList);
-        ivIcon = (ImageView)findViewById(R.id.ivIcon);
-        createList();
+
+        //создаём адаптер
+        fillData();
+        listAdapter = new ListAdapter(this,files);
+
+        //настраиваем список
+        ListView lvOpenFileList = (ListView) findViewById(R.id.lvOpenFileList);
+        lvOpenFileList.setAdapter(listAdapter);
+
     }
 
-    public void createList (){
+    //генерируем данные для адаптера
+    void fillData (){
         String directoryPath = Environment.getExternalStorageDirectory().getPath();
-        final File file = new File(directoryPath);
-        final File [] files = file.listFiles();
-        //Utils.DBG(directoryPath);
-        final ArrayAdapter<File> adapter = new ArrayAdapter<File>(this, android.R.layout.simple_list_item_1, files);
-        Utils.DBG("File 0 => "+ files[0].toString());
-        lvFilesList.setAdapter(adapter);
-
-
-
-
-        lvFilesList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Utils.DBG("Нажат пункт меню");
-                adapter.getItem(position);
-                if (file.isDirectory()){
-                Utils.DBG("Это папка");
-
-                }
-            }
-        });
+        //final File file = new File(directoryPath);
+        //final File [] files1 = file.listFiles();
+        files.add(new Files(directoryPath));
     }
 
+    
 
 }
